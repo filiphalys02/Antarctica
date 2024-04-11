@@ -33,6 +33,8 @@ for (i in 1:liczba_wierszy){
   granica_lodu$predict <- predict
   granica_lodu_mat <- data.frame(lon = katy, lat = predict)
   
+  granica_lodu_mat$lat[granica_lodu_mat$lat < granica_lodu_min_dataframe$lat] <- granica_lodu_min_dataframe$lat[granica_lodu_mat$lat < granica_lodu_min_dataframe$lat]
+  
   x <- ggplot(granica_lodu, aes(x=lon,y=lat, col="Rzeczywisty zasieg")) +
     geom_path() + 
     geom_line(data = granica_lodu_mat, aes(x=lon,y=lat,col="Model matematyczny zasieg")) +
